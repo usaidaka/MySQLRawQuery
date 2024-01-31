@@ -1,10 +1,10 @@
-const Router = require('express').Router();
+const Router = require("express").Router();
 
-const Validation = require('../helpers/validationHelper');
-const PokemonHelper = require('../helpers/pokemonHelper');
-const GeneralHelper = require('../helpers/generalHelper');
+const Validation = require("../helpers/validationHelper");
+const PokemonHelper = require("../helpers/pokemonHelper");
+const GeneralHelper = require("../helpers/generalHelper");
 
-const fileName = 'server/api/pokemon.js';
+const fileName = "server/api/pokemon.js";
 
 const list = async (request, reply) => {
   try {
@@ -15,11 +15,11 @@ const list = async (request, reply) => {
 
     return reply.send(response);
   } catch (err) {
-    console.log([fileName, 'list', 'ERROR'], { info: `${err}` });
+    console.log([fileName, "list", "ERROR"], { info: `${err}` });
     return reply.send(GeneralHelper.errorResponse(err));
   }
-}
+};
 
-Router.get('/list', list);
+Router.get("/list", list);
 
 module.exports = Router;
