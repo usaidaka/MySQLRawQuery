@@ -92,6 +92,13 @@ const getAllLendingListCustomer = async (id) => {
     return response;
   }
 
+  console.log(result);
+  response = {
+    ok: true,
+    message: "Retrieving Customer's Lending Successful",
+    result,
+  };
+
   return response;
 };
 

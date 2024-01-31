@@ -460,9 +460,11 @@ const getLendingBookListCustomer = async (id) => {
   try {
     const timeStart = process.hrtime();
     const poolConnection = await ConnectionPool.getConnection();
-
+    /* 
+customer.name, customer.phone
+*/
     const query = await poolConnection.query(
-      `SELECT * FROM ${LENDING_TABLE} WHERE deleted_at IS NULL;`
+      `SELECT customer.idCustomer,customer.name as "customerName",customer.phone,book.name as "bookName",category.name as "bookCategory",MAX(booklending.created_at) as "lentDate" FROM ${LENDING_TABLE} JOIN customer ON customer.idCustomer = booklending.idCustomer JOIN book ON book.idBook = booklending.idBook JOIN category ON book.idCategory = category.idCategory WHERE booklending.idCustomer=${id} AND booklending.deleted_at IS NULL GROUP BY customer.idCustomer, customer.name, customer.phone, book.name, category.name;`
     );
     await poolConnection.connection.release();
     const result = __constructQueryResult(query);

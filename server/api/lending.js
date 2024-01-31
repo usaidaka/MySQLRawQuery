@@ -48,7 +48,7 @@ const customerLendingBookList = async (request, reply) => {
       return reply.status(404).json(response);
     }
 
-    return response;
+    return reply.status(200).json(response);
   } catch (err) {
     console.log([fileName, "createLending", "ERROR"], { info: `${err}` });
     return reply.send(GeneralHelper.errorResponse(err));
